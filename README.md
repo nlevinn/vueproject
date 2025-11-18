@@ -7,4 +7,4 @@ Axios,
 @formkit/auto-animate,
 Composition API / Options API,
 ESLint,
-Prettier,
+Prettier
