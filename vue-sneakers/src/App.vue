@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, reactive, provide,  watch } from 'vue';
+import { onMounted, ref, reactive, provide,  watch, computed } from 'vue';
 import axios from 'axios'
 
 import Header from './components/Header.vue';
@@ -11,6 +11,12 @@ const items = ref([]);
 const cart = ref([]);
 
 const drawerOpen = ref(false);
+
+const totalPrice = computed(
+  () => cart.value.reduce((acc, item) => acc + item.price, 0)
+);
+
+const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100))
 
 const closeDrawer = () => {
   drawerOpen.value = false
@@ -130,17 +136,18 @@ provide('cart', {
   cart,
   closeDrawer,
   openDrawer,
-  addToCart
+  addToCart,
+  removeFromCart
 });
 
 </script>
 
 <template>
-  <Drawer v-if="drawerOpen" />
+  <Drawer v-if="drawerOpen" :total-price="totalPrice" :vat-price="vatPrice"/>
 
 
 <div class="w-4/5 m-auto bg-white  rounded-xl shadow-xl mt-14 mb-14">
-  <Header  @open-drawer="openDrawer" />
+  <Header :total-price="totalPrice"  @open-drawer="openDrawer" />
 
 <div class="p-10">
   <div class="flex justify-between items-center">
@@ -167,7 +174,7 @@ provide('cart', {
 
 </div>
 <div class="mt-10">
-  <CartList :items="items" @add-to-favorite="addToFavorite" @add-to-cart="addToCart"/>
+  <CartList :items="items" @add-to-favorite="addToFavorite" @add-to-cart="onClickAddPlus"/>
 </div>
 </div>
 
