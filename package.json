@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "@formkit/auto-animate": "^0.9.0",
     "@tailwindcss/vite": "^4.1.17",
-    "axios": "^1.13.2"
+    "axios": "^1.13.2",
+    "lodash.debounce": "^4.0.8",
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.22",

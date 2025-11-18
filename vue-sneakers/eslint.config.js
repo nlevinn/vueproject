@@ -11,13 +11,17 @@ export default defineConfig([
   },
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-  
+
   {
     languageOptions: {
       globals: {
         ...globals.browser,
       },
     },
+      rules: {
+    'vue/multi-word-component-names': 'off',
+    'vue/no-multiple-template-root': 'off'
+  }
   },
 
   js.configs.recommended,

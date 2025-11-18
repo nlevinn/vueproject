@@ -4,3 +4,8 @@
 body {
   background-color: rgb(247, 254, 231);
 }
+
+.img-size {
+  max-height: 198px;
+  width: 100%;
+}
